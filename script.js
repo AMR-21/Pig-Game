@@ -65,7 +65,7 @@ function reset() {
 rollDice.addEventListener("click", function () {
   dice.classList.remove("hidden");
   diceNo = Math.floor(Math.random() * 6) + 1;
-  dice.src = "dice-" + String(diceNo) + ".png";
+  dice.src = "dice-" + String(diceNo) + ".webp";
   if (diceNo === 1) {
     changePlayer();
   } else {
