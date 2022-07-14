@@ -10,26 +10,13 @@ const current1El = document.getElementById("current-score-1");
 const current2El = document.getElementById("current-score-2");
 const score1El = document.getElementById("score-1");
 const score2El = document.getElementById("score-2");
-let currentPlayer = player1El;
+let currentPlayer = 1;
 let currentScore = 0;
 let score1 = 0;
 let score2 = 0;
 
-function changePlayer() {
-  currentPlayer.classList.remove("active");
-  if (currentPlayer === player1El) {
-    current1El.textContent = 0;
-    currentPlayer = player2El;
-  } else {
-    current2El.textContent = 0;
-    currentPlayer = player1El;
-  }
-  currentScore = 0;
-  currentPlayer.classList.add("active");
-}
-
-function announceWin(player) {
-  player === 1
+function endGame() {
+  currentPlayer === 1
     ? player1El.classList.add("winner")
     : player2El.classList.add("winner");
 
@@ -39,55 +26,53 @@ function announceWin(player) {
   btnRollDice.disabled = true;
 }
 
-function checkWinner() {
-  if (score1 >= 100) announceWin(1);
-  else if (score2 >= 100) announceWin(2);
-  else changePlayer();
+function changePlayer() {
+  const currentScoreEl = document.getElementById(
+    `current-score-${currentPlayer}`
+  );
+  currentScoreEl.textContent = 0;
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+  player1El.classList.toggle("active");
+  player2El.classList.toggle("active");
+  currentScore = 0;
 }
 
-function updateScore() {
-  if (currentPlayer === player1El) {
-    score1 += currentScore;
-    score1El.textContent = score1;
+btnRollDice.addEventListener("click", function () {
+  diceEl.classList.remove("hidden");
+
+  const dice = Math.floor(Math.random() * 6) + 1;
+  diceEl.src = `dice-${dice}.webp`;
+
+  if (dice === 1) {
+    changePlayer();
   } else {
-    score2 += currentScore;
-    score2El.textContent = score2;
+    currentScore += dice;
+    document.getElementById(`current-score-${currentPlayer}`).textContent =
+      currentScore;
   }
-  checkWinner();
-}
+});
 
-function updateCurrentScore() {
-  currentPlayer === player1El
-    ? (current1El.textContent = currentScore)
-    : (current2El.textContent = currentScore);
-}
+btnHold.addEventListener("click", function () {
+  currentPlayer === 1 ? (score1 += currentScore) : (score2 += currentScore);
+  score1El.textContent = score1;
+  score2El.textContent = score2;
 
-function reset() {
+  if (score1 >= 100) endGame();
+  else if (score2 >= 100) endGame();
+  else changePlayer();
+});
+
+btnNewGame.addEventListener("click", function () {
   score1El.textContent = score2El.textContent = 0;
   current1El.textContent = current2El.textContent = 0;
   btnRollDice.classList.add("hover");
   btnHold.classList.add("hover");
   btnHold.disabled = false;
   btnRollDice.disabled = false;
-  currentPlayer.classList.remove("active");
-  currentPlayer.classList.remove("winner");
-  currentPlayer = player1El;
+  player1El.classList.add("active");
+  player2El.classList.remove("active");
+  player1El.classList.remove("winner");
+  player2El.classList.remove("winner");
+  currentPlayer = 1;
   currentScore = score1 = score2 = 0;
-  currentPlayer.classList.add("active");
-}
-
-btnRollDice.addEventListener("click", function () {
-  diceEl.classList.remove("hidden");
-  const dice = Math.floor(Math.random() * 6) + 1;
-  diceEl.src = `dice-${dice}.webp`;
-  if (dice === 1) {
-    changePlayer();
-  } else {
-    currentScore += dice;
-    updateCurrentScore();
-  }
 });
-
-btnHold.addEventListener("click", updateScore);
-
-btnNewGame.addEventListener("click", reset);
