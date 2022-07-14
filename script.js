@@ -1,6 +1,5 @@
 "use strict";
 
-let diceNo = 1;
 const diceEl = document.querySelector(".dice");
 const btnRollDice = document.querySelector(".btn-roll");
 const btnHold = document.querySelector(".btn-hold");
@@ -79,12 +78,12 @@ function reset() {
 
 btnRollDice.addEventListener("click", function () {
   diceEl.classList.remove("hidden");
-  diceNo = Math.floor(Math.random() * 6) + 1;
-  diceEl.src = `dice-${diceNo}.webp`;
-  if (diceNo === 1) {
+  const dice = Math.floor(Math.random() * 6) + 1;
+  diceEl.src = `dice-${dice}.webp`;
+  if (dice === 1) {
     changePlayer();
   } else {
-    currentScore += diceNo;
+    currentScore += dice;
     updateCurrentScore();
   }
 });
