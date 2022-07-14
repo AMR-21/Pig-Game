@@ -17,8 +17,17 @@
   </head>
   <body>
     <main>
-      <div class="player active" id="player-1">
-        <h2 class="player-name" id="name-1">Player 1</h2>
+      <div class="player" id="player-0">
+        <h2 class="player-name" id="name-0">Player 1</h2>
+        <p class="score" id="score-0">0</p>
+        <div class="current-score-container">
+          <p class="current-score-title">Current</p>
+          <p class="current-score" id="current-score-0">0</p>
+        </div>
+      </div>
+
+      <div class="player" id="player-1">
+        <h2 class="player-name" id="name-1">Player 2</h2>
         <p class="score" id="score-1">0</p>
         <div class="current-score-container">
           <p class="current-score-title">Current</p>
@@ -26,17 +35,8 @@
         </div>
       </div>
 
-      <div class="player" id="player-2">
-        <h2 class="player-name" id="name-2">Player 2</h2>
-        <p class="score" id="score-2">0</p>
-        <div class="current-score-container">
-          <p class="current-score-title">Current</p>
-          <p class="current-score" id="current-score-2">0</p>
-        </div>
-      </div>
-
       <button class="btn hover btn-new-game">🔄️ New game</button>
-      <img src="" alt="Dice image" class="dice hidden" />
+      <img src="" alt="Dice image" class="dice" />
       <button class="btn hover btn-roll">🎲 Roll dice</button>
       <button class="btn hover btn-hold">📥 Hold</button>
     </main>
