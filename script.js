@@ -29,7 +29,7 @@ function init() {
   btnHold.disabled = false;
   btnRollDice.disabled = false;
 
-  // diceEl.classList.add("hidden");
+  diceEl.classList.add("hidden");
 }
 
 init();
