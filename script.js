@@ -26,12 +26,10 @@ function init() {
   score0El.textContent = score1El.textContent = 0;
   current0El.textContent = current1El.textContent = 0;
 
-  btnRollDice.classList.add("hover");
-  btnHold.classList.add("hover");
   btnHold.disabled = false;
   btnRollDice.disabled = false;
 
-  diceEl.classList.add("hidden");
+  // diceEl.classList.add("hidden");
 }
 
 init();
@@ -47,8 +45,6 @@ function changePlayer() {
 function endGame() {
   document.getElementById(`player-${currentPlayer}`).classList.add("winner");
 
-  btnRollDice.classList.remove("hover");
-  btnHold.classList.remove("hover");
   btnHold.disabled = true;
   btnRollDice.disabled = true;
 }
