@@ -30,6 +30,10 @@
     margin-bottom: 0;
   }
 
+  .btn {
+    font-size: 1.4rem;
+  }
+
   .btn-hold,
   .btn-roll {
     display: block;
@@ -37,7 +41,7 @@
     align-items: center;
     flex-direction: column;
     bottom: 50%;
-    width: 30%;
+    width: 32%;
   }
 
   .btn-roll {
